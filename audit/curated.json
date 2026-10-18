@@ -3,7 +3,7 @@
   "my_pr": {
     "n": 21334,
     "title": "fix(server): Codex shadow homes keep SQLite state in the shared home",
-    "text": "If you run two Codex accounts in T3 Code, newer Codex builds eventually knock the second one offline with a 'not a symlink' error. This keeps both accounts on the same Codex databases. Fixes #5817, and re-lands the approach from #9229 on the V2 base."
+    "text": "If you run two Codex accounts in T3 Code, newer Codex builds eventually knock the second one offline with a 'not a symlink' error. This keeps both accounts on the same Codex databases. Fixes #5817. It overlaps #19861, opened earlier with the same approach: #19861 stops for manual recovery when old SQLite links exist, while this one removes them automatically. Maintainers can pick either."
   },
   "merge_first": [
     {
@@ -66,22 +66,38 @@
   "pick_one": [
     {
       "name": "Codex app-server crash",
-      "keep": [18139],
-      "close": [20992, 21013],
-      "other": [18764],
+      "keep": [
+        18139
+      ],
+      "close": [
+        20992,
+        21013
+      ],
+      "other": [
+        18764
+      ],
       "text": "Three authors wired the same termination signal into the same Codex event queue. #18764 goes further and also handles an app-server that stops answering."
     },
     {
       "name": "Claude Stop hangs",
-      "keep": [16419],
-      "close": [21303],
+      "keep": [
+        16419
+      ],
+      "close": [
+        21303
+      ],
       "other": [],
       "text": "#21303 adds the same 10 second timeout to the same interrupt call as #16419, plus a warning log."
     },
     {
       "name": "Windows worktree junctions",
-      "keep": [21099],
-      "close": [15833, 17076],
+      "keep": [
+        21099
+      ],
+      "close": [
+        15833,
+        17076
+      ],
       "other": [],
       "text": "#21099 says it replaces the other two."
     },
@@ -89,21 +105,30 @@
       "name": "Automatic messages refused between turns",
       "keep": [],
       "close": [],
-      "other": [15691, 16783],
+      "other": [
+        15691,
+        16783
+      ],
       "text": "Both change the same condition in `CommandPolicy.ts` in 8 or 9 lines for #15600."
     },
     {
       "name": "Old messages flash during thread switches",
       "keep": [],
       "close": [],
-      "other": [17142, 17489],
+      "other": [
+        17142,
+        17489
+      ],
       "text": "Two authors removed the same 98 lines from the chat view."
     },
     {
       "name": "Android device stream loops",
       "keep": [],
       "close": [],
-      "other": [17033, 14664],
+      "other": [
+        17033,
+        14664
+      ],
       "text": "Theo's #17033 cites #14664 and covers it."
     }
   ],
