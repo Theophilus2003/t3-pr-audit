@@ -1,0 +1,127 @@
+{
+  "picked_on": "Oct 18, 2026",
+  "my_pr": {
+    "n": 21334,
+    "title": "fix(server): Codex shadow homes keep SQLite state in the shared home",
+    "text": "If you run two Codex accounts in T3 Code, newer Codex builds eventually knock the second one offline with a 'not a symlink' error. This keeps both accounts on the same Codex databases. Fixes #5817, and re-lands the approach from #9229 on the V2 base."
+  },
+  "merge_first": [
+    {
+      "n": 21099,
+      "by": "SunkenInTime",
+      "title": "fix(server): removing a worktree on Windows no longer deletes what its junctions point to",
+      "today": "Removing a worktree on Windows can delete the real folders its junctions point to. Fixes #14990. It replaces #15833 and #17076.",
+      "bot": "needs a human"
+    },
+    {
+      "n": 18465,
+      "by": "otavio",
+      "title": "fix(web): offline launch no longer deletes T3 Connect environments",
+      "today": "Open the app offline and Clerk loads as signed out, so T3 Code deletes the saved T3 Connect environments. Fixes #17917 by changing one condition.",
+      "bot": "needs a human"
+    },
+    {
+      "n": 21198,
+      "by": "Alyx-ML",
+      "title": "fix(server): retried Codex rewinds no longer delete extra turns",
+      "today": "When a rewind half-fails and is retried, Codex reverts extra turns and deletes history the user meant to keep. The fix tracks native turn IDs instead of a count.",
+      "bot": "approved"
+    },
+    {
+      "n": 14981,
+      "by": "Mnigos",
+      "title": "fix(server): atomic writes keep the file's permission bits",
+      "today": "Every atomic save resets the file mode, so a `settings.json` locked to 0600 comes back 0644. That file can hold an OpenCode server password or an Antigravity API key. Fixes #14967.",
+      "bot": "needs a human"
+    },
+    {
+      "n": 20237,
+      "by": "fixfon",
+      "title": "fix(desktop): built-in browser sites can no longer post notifications without permission",
+      "today": "Every site opened in the built-in browser silently gets notification permission and can raise native notifications under T3 Code's name. Fixes #20218.",
+      "bot": "needs a human"
+    },
+    {
+      "n": 17963,
+      "by": "maxwellyoung",
+      "title": "fix(claude): Plan mode asks before writes in Auto and Full access",
+      "today": "With Plan mode on in Auto or Full access, Claude's edits and file-changing shell commands run without a prompt. Fixes #15503.",
+      "bot": "needs a human"
+    },
+    {
+      "n": 21143,
+      "by": "freakmedia",
+      "title": "fix(opencode): reapply permission rules on resume",
+      "today": "After the OpenCode server restarts, resumed threads drop their permission rules, so a Full access thread starts asking for file reads again.",
+      "bot": "needs a human"
+    },
+    {
+      "n": 18139,
+      "by": "voltcrash",
+      "title": "fix(server): release Codex sessions when the app-server dies",
+      "today": "When the shared Codex app-server dies, every Codex thread stays broken until T3 Code restarts. Fixes #16502. A maintainer already closed #20301 as covered by this PR, and #20992 and #21013 are the same fix again.",
+      "bot": "approved"
+    }
+  ],
+  "pick_one": [
+    {
+      "name": "Codex app-server crash",
+      "keep": [18139],
+      "close": [20992, 21013],
+      "other": [18764],
+      "text": "Three authors wired the same termination signal into the same Codex event queue. #18764 goes further and also handles an app-server that stops answering."
+    },
+    {
+      "name": "Claude Stop hangs",
+      "keep": [16419],
+      "close": [21303],
+      "other": [],
+      "text": "#21303 adds the same 10 second timeout to the same interrupt call as #16419, plus a warning log."
+    },
+    {
+      "name": "Windows worktree junctions",
+      "keep": [21099],
+      "close": [15833, 17076],
+      "other": [],
+      "text": "#21099 says it replaces the other two."
+    },
+    {
+      "name": "Automatic messages refused between turns",
+      "keep": [],
+      "close": [],
+      "other": [15691, 16783],
+      "text": "Both change the same condition in `CommandPolicy.ts` in 8 or 9 lines for #15600."
+    },
+    {
+      "name": "Old messages flash during thread switches",
+      "keep": [],
+      "close": [],
+      "other": [17142, 17489],
+      "text": "Two authors removed the same 98 lines from the chat view."
+    },
+    {
+      "name": "Android device stream loops",
+      "keep": [],
+      "close": [],
+      "other": [17033, 14664],
+      "text": "Theo's #17033 cites #14664 and covers it."
+    }
+  ],
+  "take_over": [
+    {
+      "n": 16448,
+      "title": "settle the OpenCode model catalog before caching it",
+      "text": "Saved OpenCode models show as Unavailable after startup (#15994, #15155). The loader it fixes moved to `packages/provider-opencode/src/server/status.ts` with the same bug intact. The newer #21100 is larger."
+    },
+    {
+      "n": 15360,
+      "title": "Claude Auto mode asks before commands it escalates",
+      "text": "In Auto mode, commands your `permissions.ask` rules or hooks escalate, such as `git push`, run without a prompt (#15353)."
+    },
+    {
+      "n": 14539,
+      "title": "PR code tab no longer reloads on background refreshes",
+      "text": "Matches #14483, one of the most upvoted open issues. #13835 overlaps it."
+    }
+  ]
+}
