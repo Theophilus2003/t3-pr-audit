@@ -3,7 +3,7 @@
   "my_pr": {
     "n": 21334,
     "title": "fix(server): Codex shadow homes keep SQLite state in the shared home",
-    "text": "If you run two Codex accounts in T3 Code, newer Codex builds eventually knock the second one offline with a 'not a symlink' error. This keeps both accounts on the same Codex databases. Fixes #5817. It overlaps #19861, opened earlier with the same approach: #19861 stops for manual recovery when old SQLite links exist, while this one removes them automatically. Maintainers can pick either."
+    "text": "If you run two Codex accounts in T3 Code, newer Codex builds eventually knock the second one offline with a 'not a symlink' error (#5817). I sent this fix, then maintainer Julius Marminge started his own fix for the same bug in #21947 and #21948, so I closed mine in favour of his and offered him the extra test from my PR."
   },
   "merge_first": [
     {
